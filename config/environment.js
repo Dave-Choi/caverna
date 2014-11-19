@@ -16,6 +16,17 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      firebaseURI: "https://caverna.firebaseio.com"
+    },
+
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "'self' 'unsafe-eval'",
+      'font-src': "'self'",
+      'connect-src': "'self' wss://*.firebaseio.com", // Allow data (ajax/websocket)
+      'img-src': "'self'",
+      'style-src': "'self' 'unsafe-inline'", // Allow inline styles 
+      'media-src': "'self'"
     }
   };
 
