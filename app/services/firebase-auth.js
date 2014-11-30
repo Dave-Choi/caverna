@@ -13,7 +13,9 @@ export default Ember.Object.extend({
 		var service = this;
 
 		firebase.onAuth(function(authData){
-			service.set('authData', authData);
+			Ember.run(function(){
+				service.set('authData', authData);
+			});
 		});
 	}.on("init"),
 
