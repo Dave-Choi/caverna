@@ -9,6 +9,20 @@ export default Ember.Object.extend({
 
 	provider: Ember.computed.alias("authData.provider"),
 
+	displayName: function(){
+		var provider = this.get("provider");
+		var authData = this.get("authData");
+		var displayName = "";
+
+		switch(provider){
+			case "google":
+				displayName = authData.google.displayName;
+				break;
+		}
+
+		return displayName;
+	}.property("provider"),
+
 	setupOnAuth: function(){
 		// Updates the authData property whenever Firebase's auth status changes
 		var firebase = this.firebase.instance;

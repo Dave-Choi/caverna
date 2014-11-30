@@ -4,7 +4,35 @@ import {
 } from 'ember-qunit';
 
 function mockAuthData(provider){
-	return {
+	var providers = {
+		google: {
+		  "uid": "google:000000000000000000000",
+		  "provider": "google",
+		  "google": {
+		    "id": "000000000000000000000",
+		    "accessToken": "testaccesstoken",
+		    "displayName": "David Choi",
+		    "cachedUserProfile": {
+		      "id": "000000000000000000000",
+		      "name": "David Choi",
+		      "given_name": "David",
+		      "family_name": "Choi",
+		      "link": "https://plus.google.com/000000000000000000000",
+		      "picture": "",
+		      "gender": "male",
+		      "locale": "en"
+		    }
+		  },
+		  "token": "testtoken",
+		  "auth": {
+		    "uid": "google:000000000000000000000",
+		    "provider": "google"
+		  },
+		  "expires": 9999999999
+		}
+	};
+
+	return providers[provider] || {
 		uid: provider + ":testid",
 		provider: provider,
 		auth: "testtoken"
@@ -123,5 +151,27 @@ test('authData is emptied after logout', function() {
 		authData,
 		{},
 		"authData is emptied."
+	);
+});
+
+moduleFor('service:firebase-auth', 'FirebaseAuthService#displayName', {
+	// Specify the other units that are required for this test.
+	// needs: ['service:firebase']
+});
+
+test('displayName is correctly extracted from authData.', function() {
+	expect(1);
+
+	var service = this.subject({
+		firebase: FirebaseServiceMock
+	});
+
+	service.set("authData", mockAuthData("google"));
+	var displayName = service.get("displayName");
+
+	deepEqual(
+		displayName,
+		"David Choi",
+		"displayName is correct for google provided data."
 	);
 });
