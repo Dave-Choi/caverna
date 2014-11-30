@@ -7,6 +7,8 @@ export default Ember.Object.extend({
 	// providers: ["google", "github", "facebook", "twitter"], // Firebase auth providers
 	providers: ["google"], // Only google is enabled for this app, but flesh this out if extracting
 
+	provider: Ember.computed.alias("authData.provider"),
+
 	setupOnAuth: function(){
 		// Updates the authData property whenever Firebase's auth status changes
 		var firebase = this.firebase.instance;
