@@ -1,0 +1,14 @@
+Games Template
+
+{{#link-to "games.new"}}New Game{{/link-to}}
+{{outlet}}
+
+Games index
+{{#each}}
+	Some game
+	{{createdAt}}
+	{{#each seats}}
+		Some seat
+		{{player.name}}
+	{{/each}}
+{{/each}}

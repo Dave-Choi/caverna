@@ -1,0 +1,11 @@
+Games index
+{{#each}}
+	Some game
+	{{#each seats}}
+		Some seat
+		{{player.name}}
+	{{/each}}
+	{{#else}}
+		There are no games.
+	{{/else}}
+{{/each}}

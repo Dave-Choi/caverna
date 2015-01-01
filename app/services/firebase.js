@@ -6,5 +6,6 @@ var firebaseURI = ENV.APP.firebaseURI;
 var instance = new Firebase(firebaseURI);
 
 export default Ember.Object.extend({
-	instance: instance
+	instance: instance,
+	serverTime: Firebase.ServerValue.TIMESTAMP
 });
